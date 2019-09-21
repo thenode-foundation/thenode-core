@@ -1,0 +1,26 @@
+[Unit]
+Description=TheNode's distributed currency daemon
+After=network.target
+
+[Service]
+User=thenode
+Group=thenode
+
+Type=forking
+PIDFile=/var/lib/thenoded/thenoded.pid
+
+ExecStart=/usr/bin/thenoded -daemon -pid=/var/lib/thenoded/thenoded.pid \
+          -conf=/etc/thenode/thenode.conf -datadir=/var/lib/thenoded
+
+ExecStop=-/usr/bin/thenode-cli -conf=/etc/thenode/thenode.conf \
+         -datadir=/var/lib/thenoded stop
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

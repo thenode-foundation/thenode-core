@@ -1,0 +1,11 @@
+[Protocol]
+exec=thenode-qt '%u'
+protocol=thenode
+input=none
+output=none
+helper=true
+listing=
+reading=false
+writing=false
+makedir=false
+deleting=false

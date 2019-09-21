@@ -1,0 +1,26 @@
+# /etc/conf.d/thenoded: config file for /etc/init.d/thenoded
+
+# Config file location
+#BITCOIND_CONFIGFILE="/etc/thenode/thenode.conf"
+
+# What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
+#BITCOIND_PIDDIR="/var/run/thenoded"
+
+# What filename to give the pidfile
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/thenoded.pid"
+
+# Where to write thenoded data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/thenoded"
+
+# User and group to own thenoded process
+#BITCOIND_USER="thenode"
+#BITCOIND_GROUP="thenode"
+
+# Path to thenoded executable
+#BITCOIND_BIN="/usr/bin/thenoded"
+
+# Nice value to run thenoded under
+#BITCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+BITCOIND_OPTS=""

@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=TheNode
+Comment=TheNode P2P Cryptocurrency
+Comment[fr]=TheNode, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=TheNode, eşten eşe kriptografik sanal para birimi
+Exec=thenode-qt %u
+Terminal=false
+Type=Application
+Icon=thenode128
+MimeType=x-scheme-handler/thenode;
+Categories=Office;Finance;
