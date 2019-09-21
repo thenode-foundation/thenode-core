@@ -15,7 +15,7 @@ Cloning the repository and compiling (use any user with the sudo group):
 
     cd
     git clone https://github.com/thenode-foundation/TheNode-core.git
-    cd thenode
+    cd thenode-core
     ./autogen.sh
     ./configure
     sudo make install
