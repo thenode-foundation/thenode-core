@@ -3490,8 +3490,8 @@ https://www.transifex.com/thenode-project/thenode-project-translations</translat
         <translation>Você deve especificar uma masternodeprivkey na configuração. Favor verificar o manual para obter ajuda.</translation>
     </message>
     <message>
-        <source>(48490 could be used only on mainnet)</source>
-        <translation>(48490 could be used only on mainnet)</translation>
+        <source>(48491 could be used only on mainnet)</source>
+        <translation>(48491 could be used only on mainnet)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -3502,8 +3502,8 @@ https://www.transifex.com/thenode-project/thenode-project-translations</translat
         <translation>(padrão: 1)</translation>
     </message>
     <message>
-        <source>(must be 48490 for mainnet)</source>
-        <translation>(deve ser 48490 para mainnet)</translation>
+        <source>(must be 48491 for mainnet)</source>
+        <translation>(deve ser 48491 para mainnet)</translation>
     </message>
     <message>
         <source>Accept connections from outside (default: 1 if no -proxy or -connect)</source>

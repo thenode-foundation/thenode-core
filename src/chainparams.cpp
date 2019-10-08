@@ -54,10 +54,10 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (0, uint256("0x000009cf9b5409df14ce36ea8f08d1ee7ec832b1ccdf7287256a9bf133916a9e"));
+    (0, uint256("0x00000696dcbfb4dd01101eca8df88dd811ab159c1839cc869b4856fed2ce4e28"));
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1567159388, // * UNIX timestamp of last checkpoint block
+    1570492800, // * UNIX timestamp of last checkpoint block
     0,          // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     2000        // * estimated number of transactions per day after checkpoint
@@ -105,7 +105,7 @@ public:
         pchMessageStart[2] = 0x49;
         pchMessageStart[3] = 0x56;
         vAlertPubKey = ParseHex("04bcbf5f4dab42002143f5b25a2e6fd658dd300508c0fd3c890edfa241edcdd224c9fb62d0a3e86ab655c384b598bd3e92d25fee84774060a0d461f0e9483587e5");
-        nDefaultPort = 48490;
+        nDefaultPort = 48491;
         bnProofOfWorkLimit = ~uint256(0) >> 20; // TheNode starting difficulty is 1 / 2^12
         nSubsidyHalvingInterval = 21000000;
         nMaxReorganizationDepth = 100;
@@ -150,12 +150,12 @@ public:
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime = 1567159388;
+        genesis.nTime = 1570492800;
         genesis.nBits = 0x1e0ffff0;
-        genesis.nNonce = 1241937;
+        genesis.nNonce = 892387;
 
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x000009cf9b5409df14ce36ea8f08d1ee7ec832b1ccdf7287256a9bf133916a9e"));
+        assert(hashGenesisBlock == uint256("0x00000696dcbfb4dd01101eca8df88dd811ab159c1839cc869b4856fed2ce4e28"));
         assert(genesis.hashMerkleRoot == uint256("0x91b242b96f15e5492f285bf739b6fe13a6b9a54e21d16a905d0ea777fc9696e7"));
 
         vSeeds.push_back(CDNSSeedData("45.76.52.10", "45.76.52.10"));        

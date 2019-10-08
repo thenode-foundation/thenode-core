@@ -14,7 +14,7 @@ Installation of libraries (using root user):
 Cloning the repository and compiling (use any user with the sudo group):
 
     cd
-    git clone https://github.com/thenode-foundation/TheNode-core.git
+    git clone https://github.com/thenode-foundation/thenode-core.git
     cd thenode-core
     ./autogen.sh
     ./configure
