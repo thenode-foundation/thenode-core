@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2019 TheNode developers
+// Copyright (c) 2019-2020 The TheNode developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -105,7 +105,7 @@ public:
         pchMessageStart[2] = 0x49;
         pchMessageStart[3] = 0x56;
         vAlertPubKey = ParseHex("04bcbf5f4dab42002143f5b25a2e6fd658dd300508c0fd3c890edfa241edcdd224c9fb62d0a3e86ab655c384b598bd3e92d25fee84774060a0d461f0e9483587e5");
-        nDefaultPort = 48491;
+        nDefaultPort = 49491;
         bnProofOfWorkLimit = ~uint256(0) >> 20; // TheNode starting difficulty is 1 / 2^12
         nSubsidyHalvingInterval = 21000000;
         nMaxReorganizationDepth = 100;
@@ -163,14 +163,18 @@ public:
         vSeeds.push_back(CDNSSeedData("78.141.214.177", "78.141.214.177"));  
         vSeeds.push_back(CDNSSeedData("seed1", "p1.the-node.foundation"));
         vSeeds.push_back(CDNSSeedData("seed2", "p2.the-node.foundation"));
-        vSeeds.push_back(CDNSSeedData("seed3", "p3.the-node.foundation"));          
+        vSeeds.push_back(CDNSSeedData("seed3", "p3.the-node.foundation"));   
+        vSeeds.push_back(CDNSSeedData("seed4", "the1.genesisblock.eu"));
+        vSeeds.push_back(CDNSSeedData("seed5", "the2.genesisblock.eu"));
+        vSeeds.push_back(CDNSSeedData("seed6", "the3.genesisblock.eu"));            
+        vSeeds.push_back(CDNSSeedData("seed7", "the4.genesisblock.eu"));                    
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 65);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 8);
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 212);
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x02)(0x2D)(0x25)(0x33).convert_to_container<std::vector<unsigned char> >();
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x02)(0x21)(0x31)(0x2B).convert_to_container<std::vector<unsigned char> >();
-        // 	BIP44 coin type is from https://github.com/satoshilabs/slips/blob/master/slip-0044.md
+        //  BIP44 coin type is from https://github.com/satoshilabs/slips/blob/master/slip-0044.md
         base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x00)(0xbc).convert_to_container<std::vector<unsigned char> >();
 
         convertSeed6(vFixedSeeds, pnSeed6_main, ARRAYLEN(pnSeed6_main));
@@ -223,19 +227,19 @@ public:
         pchMessageStart[2] = 0x65;
         pchMessageStart[3] = 0xba;
         vAlertPubKey = ParseHex("042292b1f401860eea99e1a8a103effbd7e1c013a59a1a3a0c91c9d1997a0bc6f338567278c11344802838c107055bf7c1641eaed61e879245c255a4f5be5746fc");
-        nDefaultPort = 48493;
+        nDefaultPort = 49493;
         nEnforceBlockUpgradeMajority = 51;
         nRejectBlockOutdatedMajority = 75;
         nToCheckBlockUpgradeMajority = 100;
         nMinerThreads = 0;
         nTargetTimespan = 1 * 60; // TheNode: 1 day
         nTargetSpacing = 1 * 15;  // TheNode: 15 seconds
-        nLastPOWBlock = 100;
+        nLastPOWBlock = 3000;
         nMaturity = 2;
         nMasternodeCountDrift = 4;
-        nModifierUpdateBlock = 51197; 
-        nMaxMoneyOut = 21000000 * COIN;
-        nZerocoinStartHeight = 101;
+        nModifierUpdateBlock = 51197; //approx Mon, 17 Apr 2017 04:00:00 GMT
+        nMaxMoneyOut = 43199500 * COIN;
+        nZerocoinStartHeight = 3100;
         nBlockEnforceSerialRange = 1; //Enforce serial range starting this block
         nBlockRecalculateAccumulators = ~1; //Trigger a recalculation of accumulators
         nBlockFirstFraudulent = ~1; //First block that bad serials emerged
@@ -253,7 +257,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 127); // Testnet thenode addresses start with 't'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 127); // Testnet thenode addresses start with 'x' or 'y'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet thenode script addresses start with '8' or '9'
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);     // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
         // Testnet thenode BIP32 pubkeys start with 'DRKV'
@@ -307,19 +311,18 @@ public:
         nRejectBlockOutdatedMajority = 950;
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 1;
-        nTargetTimespan = 24 * 60 * 60; // TheNode: 1 day
-        nTargetSpacing = 1 * 60;        // TheNode: 1 minutes
+        nTargetTimespan = 24 * 60 * 60;
+        nTargetSpacing = 1 * 60;
         bnProofOfWorkLimit = ~uint256(0) >> 1;
         genesis.nTime = 1515524400;
         genesis.nBits = 0x1e0ffff0;
         genesis.nNonce = 732084;
 
         hashGenesisBlock = genesis.GetHash();
-        nDefaultPort = 48495;
-        //assert(hashGenesisBlock == uint256("0x000008415bdca132b70cf161ecc548e5d0150fd6634a381ee2e99bb8bb77dbb3"));
+        nDefaultPort = 49495;
 
-        vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
-        vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.
+        vFixedSeeds.clear();
+        vSeeds.clear();
 
         fRequireRPCPassword = false;
         fMiningRequiresPeers = false;
@@ -346,9 +349,9 @@ public:
     {
         networkID = CBaseChainParams::UNITTEST;
         strNetworkID = "unittest";
-        nDefaultPort = 48499;
-        vFixedSeeds.clear(); //! Unit test mode doesn't have any fixed seeds.
-        vSeeds.clear();      //! Unit test mode doesn't have any DNS seeds.
+        nDefaultPort = 49497;
+        vFixedSeeds.clear();
+        vSeeds.clear();
 
         fRequireRPCPassword = false;
         fMiningRequiresPeers = false;

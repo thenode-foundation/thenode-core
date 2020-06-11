@@ -89,7 +89,7 @@ use old versions of Upstart and do not supply the start-stop-daemon uitility.
 Copy thenoded.init to /etc/init.d/thenoded. Test by running "service thenoded start".
 
 Using this script, you can adjust the path and flags to the thenoded program by
-setting the THENODED and FLAGS environment variables in the file
+setting the THED and FLAGS environment variables in the file
 /etc/sysconfig/thenoded. You can also use the DAEMONOPTS environment variable here.
 
 5. Auto-respawn

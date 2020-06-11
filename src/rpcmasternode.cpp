@@ -301,6 +301,7 @@ Value listmasternodes(const Array& params, bool fHelp)
             obj.push_back(Pair("txhash", strTxHash));
             obj.push_back(Pair("outidx", (uint64_t)oIdx));
             obj.push_back(Pair("status", strStatus));
+            obj.push_back(Pair("ip", mn->addr.ToStringIP()));            
             obj.push_back(Pair("addr", CBitcoinAddress(mn->pubKeyCollateralAddress.GetID()).ToString()));
             obj.push_back(Pair("version", mn->protocolVersion));
             obj.push_back(Pair("lastseen", (int64_t)mn->lastPing.sigTime));
@@ -325,7 +326,7 @@ Value masternodeconnect(const Array& params, bool fHelp)
             "1. \"address\"     (string, required) IP or net address to connect to\n"
 
             "\nExamples:\n" +
-            HelpExampleCli("masternodeconnect", "\"192.168.0.6:48491\"") + HelpExampleRpc("masternodeconnect", "\"192.168.0.6:48491\""));
+            HelpExampleCli("masternodeconnect", "\"192.168.0.6:49491\"") + HelpExampleRpc("masternodeconnect", "\"192.168.0.6:49491\""));
 
     std::string strAddress = params[0].get_str();
 

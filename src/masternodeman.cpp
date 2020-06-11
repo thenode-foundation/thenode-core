@@ -654,7 +654,7 @@ std::vector<pair<int, CMasternode> > CMasternodeMan::GetMasternodeRanks(int64_t 
         if (mn.protocolVersion < minProtocol) continue;
 
         if (!mn.IsEnabled()) {
-            vecMasternodeScores.push_back(make_pair(9999, mn));
+            vecMasternodeScores.push_back(make_pair(999, mn));
             continue;
         }
 
@@ -925,8 +925,8 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
         }
 
         if (Params().NetworkID() == CBaseChainParams::MAIN) {
-            if (addr.GetPort() != 48491) return;
-        } else if (addr.GetPort() == 48491)
+            if (addr.GetPort() != 49491) return;
+        } else if (addr.GetPort() == 49491)
             return;
 
         //search existing Masternode list, this is where we update existing Masternodes with new dsee broadcasts
@@ -986,7 +986,7 @@ void CMasternodeMan::ProcessMessage(CNode* pfrom, std::string& strCommand, CData
 
         CValidationState state;
         CMutableTransaction tx = CMutableTransaction();
-        CTxOut vout = CTxOut(9999.99 * COIN, obfuScationPool.collateralPubKey);
+        CTxOut vout = CTxOut(999.99 * COIN, obfuScationPool.collateralPubKey);
         tx.vin.push_back(vin);
         tx.vout.push_back(vout);
 

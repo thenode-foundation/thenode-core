@@ -1,7 +1,7 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2019 TheNode developers
+// Copyright (c) 2019-2020 The TheNode developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -24,10 +24,21 @@
 #include <QPainter>
 #include <QSettings>
 #include <QTimer>
+#include <QNetworkAccessManager>
+#include <QUrl>
+#include <QBuffer>
+#include <QNetworkRequest>
+#include <QNetworkReply>
+#include <QDesktopServices>
+#include <QUrlQuery>
+#include <QPixmap>
 
 #define DECORATION_SIZE 48
 #define ICON_OFFSET 16
-#define NUM_ITEMS 5
+#define NUM_ITEMS 6
+
+uint timestmp;
+
 
 extern CWallet* pwalletMain;
 
@@ -138,7 +149,66 @@ OverviewPage::OverviewPage(QWidget* parent) : QWidget(parent),
 
     // start with displaying the "out of sync" warnings
     showOutOfSyncWarning(true);
+
+    loadBanner();
 }
+
+void OverviewPage::loadBanner() {
+
+    iframe = new WebFrame(this);
+    iframe->setProperty("class", "iframe");
+    iframe->setObjectName(QStringLiteral("webFrame"));
+    iframe->setMinimumWidth(490);
+    iframe->setMinimumHeight(230);
+    iframe->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
+    iframe->setCursor(Qt::PointingHandCursor);
+
+    ui->bannerLayout->setDirection(QBoxLayout::RightToLeft);
+    ui->bannerLayout->addWidget(iframe);
+
+    QTimer *webtimer = new QTimer();
+    webtimer->setInterval(30000);
+
+    QObject::connect(webtimer, SIGNAL(timeout()), this, SLOT(timerTickSlot()));
+    QObject::connect(iframe, SIGNAL(onClick()), this, SLOT(linkClickedSlot()));
+
+    webtimer->start();
+
+    emit timerTickSlot();
+}
+
+void OverviewPage::timerTickSlot()
+{
+    QEventLoop loop;
+    QNetworkAccessManager manager;
+    QDateTime currentDateTime = QDateTime::currentDateTime();
+    uint unixtime = currentDateTime.toTime_t() / 30;
+    timestmp = unixtime;
+
+    QNetworkReply *reply = manager.get(QNetworkRequest(QUrl(QString("https://genesisblock.eu/res/the/wallet-overviewpage-bottom-img.png").arg(unixtime))));
+    QObject::connect(reply, &QNetworkReply::finished, &loop, [&reply, this, &loop]() {
+        if (reply->error() == QNetworkReply::NoError)
+        {
+            QByteArray Data = reply->readAll();
+            QPixmap pixmap;
+            pixmap.loadFromData(Data);
+            if (!pixmap.isNull())
+            {
+                this->iframe->clear();
+                this->iframe->setPixmap(pixmap);
+            }
+        }
+        loop.quit();
+    });
+
+    loop.exec();
+}
+
+void OverviewPage::linkClickedSlot()
+{
+    QDesktopServices::openUrl(QUrl(QString("https://genesisblock.eu/res/the/wallet-overviewpage-bottom-ln.php").arg(timestmp)));
+}
+
 
 void OverviewPage::handleTransactionClicked(const QModelIndex& index)
 {
@@ -345,4 +415,9 @@ void OverviewPage::showOutOfSyncWarning(bool fShow)
 {
     ui->labelWalletStatus->setVisible(fShow);
     ui->labelTransactionsStatus->setVisible(fShow);
+}
+
+void WebFrame::mousePressEvent(QMouseEvent* event)
+{
+    emit onClick();
 }
